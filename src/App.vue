@@ -1,28 +1,39 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div id="app" v-if="fronteggLoaded">
+    <div v-if="this.authState.user">
+      <span>Logged in as: {{this.authState.user.name}}</span>
+    </div>
+    <div>
+      <button v-if="this.authState.user" v-on:click="logout">Logout</button>
+      <button v-if="this.authState.user" v-on:click="showAccessToken">What is my access token?</button>
+      <button v-if="!this.authState.user" v-on:click="goToLogin">Login</button>
+    </div>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
 export default {
-  name: 'App',
-  components: {
-    HelloWorld
+  name: "App",
+  created() {
+    if (!this.authState.user) {
+      this.goToLogin();
+    }
+  },
+  methods: {
+    goToLogin() {
+      this.$router.push('/account/login');
+    },
+    showAccessToken() {
+      alert(this.authState.user.accessToken);
+    },
+    logout() {
+      this.$router.push('/account/logout');
+    }
+  },
+  data() {
+    return {
+      ...this.mapAuthState(),
+    }
   }
-}
+};
 </script>
-
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>

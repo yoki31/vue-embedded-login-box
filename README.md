@@ -1,24 +1,15 @@
-# vue-embedded-login-box
+# Getting Started with Frontegg Embedded Login-Box and Vue.js
 
-## Project setup
-```
-npm install
-```
+This sample is a Frontegg Login-Box embedded sample crafted with Vue.js.
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+## Running the sample
 
-### Compiles and minifies for production
-```
-npm run build
-```
+After cloning the project, install it using
 
-### Lints and fixes files
-```
-npm run lint
-```
+### `npm install`
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+In order to run the project, run
+### `npm start`
+
+The application will be opened on [http://localhost:3000](http://localhost:3000) in development mode, and you should
+have the Frontegg login box displayed.
